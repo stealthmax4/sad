@@ -1,0 +1,125 @@
+def main():
+  import os
+  import sys
+  import PySimpleGUI as sg
+
+  enable_events = True
+  sg.theme("DarkAmber")
+
+  cannonselect = [
+  [
+    sg.Text("Select Cannon Type: "),
+  ],
+  [
+    sg.Button("6lb"),
+    sg.Button("12lb"),
+    sg.Button("Mortar (1/4)"),
+    sg.Button("Mortar (2/4)"),
+  ]
+]
+  distancewindow1 = [
+  [
+    sg.Text("Enter Distance: ", size = (15, 1)), sg.InputText()
+  ],
+  [
+  sg.Button("Enter")
+  ]
+]
+  window = sg.Window(
+  "  Arty Calculator for WaH",
+  cannonselect,
+  location=(0,0),
+  size=(800, 600)
+  )
+  inputwindow = sg.Window(
+  "  Input Distance",
+  distancewindow1,
+  location=(0,0),
+  size=(800, 600)
+  )
+  while True:
+    event, values = window.read()
+    if event == "OK" or event == sg.WIN_CLOSED:
+      break
+    elif event == "6lb":
+      events2, values2 = inputwindow.read()
+      Distance1 = int(values2[0])
+      if Distance1 > 500:
+        Distance1 = Distance1 - 500
+        Distance1 = Distance1 / 80 
+        Distance1 = Distance1 / 10
+        round(Distance1 + 2.8, 1)
+        inputwindow.close()
+        pitchwindow = [[sg.Text("Set Pitch to: ")], [sg.Text(round(Distance1 + 2.8, 1))], [sg.Button("Back")]]
+        outputwindow = sg.Window(
+        "  Output Pitch",
+        pitchwindow,
+        location=(0,0),
+        size=(800, 600))
+        events3, values3 = outputwindow.read()
+        print(events3)
+        if events3 == "Back":
+          outputwindow.close()
+          main()
+      else: 
+        Distance1 = Distance1 / 180
+        inputwindow.close()
+        pitchwindow = [[sg.Text("Set Pitch to: ")], [sg.Text(round(Distance1, 1))], [sg.Button("Back")]]
+        outputwindow = sg.Window(
+        "  Output Pitch",
+        pitchwindow,
+        location=(0,0),
+        size=(800, 600))
+        events3, values3 = outputwindow.read()
+      print(events3)
+      if events3 == "Back":
+        outputwindow.close()
+        main()
+    elif event == "12lb":
+      events2, values2 = inputwindow.read()
+      Distance1 = int(values2[0])
+      Distance1 = Distance1 / 240
+      inputwindow.close()
+      pitchwindow = [[sg.Text("Set Pitch to: ")], [sg.Text(round(Distance1, 1))], [sg.Button("Back")]]
+      outputwindow = sg.Window(
+      "  Output Pitch",
+      pitchwindow,
+      location=(0,0),
+      size=(800, 600))
+      events3, values3 = outputwindow.read()
+      print(events3)
+      if events3 == "Back":
+        outputwindow.close()
+        main()
+    elif event == "Mortar (1/4)":
+      events2, values2 = inputwindow.read()
+      Distance1 = int(values2[0])
+      Distance1 = Distance1 / 30
+      inputwindow.close()
+      pitchwindow = [[sg.Text("Set Pitch to: ")], [sg.Text(round(Distance1, 1))], [sg.Button("Back")]]
+      outputwindow = sg.Window(
+      "  Output Pitch",
+      pitchwindow,
+      location=(0,0),
+      size=(800, 600))
+      events3, values3 = outputwindow.read()
+      print(events3)
+      if events3 == "Back":
+        outputwindow.close()
+        main()
+    elif event == "Mortar (2/4)":
+      events2, values2 = inputwindow.read()
+      Distance1 = int(values2[0])
+      Distance1 = Distance1 / 60
+      inputwindow.close()
+      pitchwindow = [[sg.Text("Set Pitch to: ")], [sg.Text(round(Distance1, 1))], [sg.Button("Back")]]
+      outputwindow = sg.Window(
+      "  Output Pitch",
+      pitchwindow,
+      location=(0,0),
+      size=(800, 600))
+      events3, values3 = outputwindow.read()
+      print(events3)
+      if events3 == "Back":
+        outputwindow.close()
+        main()
